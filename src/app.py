@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, request, send_file
 from repository.database import db
 from db_models.snack import Dieta
 from datetime import datetime, timedelta
-from diet.diet import Diet
+from diet.dieta import Diet
 from flask_socketio import SocketIO
 
 
@@ -19,14 +19,11 @@ socketio = SocketIO(app)
 def create_diet():
     data = request.get_json()
     print(data)
+    
     return jsonify({"message": "Dados inválidos."}), 400
 
 
 
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
     
     
