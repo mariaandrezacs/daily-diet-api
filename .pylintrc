@@ -8,6 +8,7 @@ disable=
       C0209, # consider-using-f-string
       E0015, # unrecognized-option 
       E0402, # relative import beyond top-level
+      E0401, # import-error
       
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
