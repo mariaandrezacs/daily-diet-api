@@ -46,7 +46,11 @@ def create_diet():
     return jsonify({'message': 'Meals created successfully'}), 201
 
 
-
+@app.route("/refeicoes", methods=["GET"])
+def get_refeicoes():
+    refeicoes = Refeicoes.query.all()
+    data = [refeicao.to_dict() for refeicao in refeicoes]
+    return jsonify({'refeicoes': data}), 200
 
 
 
