@@ -1,0 +1,33 @@
+[
+    {
+      "name": "Salada de Frango",
+      "description": "Frango grelhado com folhas verdes",
+      "date_time": "2025-03-03 12:30:00",
+      "in_diet": true
+    },
+    {
+      "name": "Omelete de Espinafre",
+      "description": "Omelete com espinafre e queijo branco",
+      "date_time": "2025-03-03 08:00:00",
+      "in_diet": true
+    },
+    {
+      "name": "Frango com Legumes",
+      "description": "Frango grelhado com abobrinha, cenoura e brócolis",
+      "date_time": "2025-03-03 18:30:00",
+      "in_diet": true
+    },
+    {
+      "name": "Wrap de Peru",
+      "description": "Wrap de peru com alface, tomate e abacate",
+      "date_time": "2025-03-03 13:45:00",
+      "in_diet": true
+    },
+    {
+      "name": "Salmão Grelhado",
+      "description": "Salmão grelhado com arroz integral e aspargos",
+      "date_time": "2025-03-03 20:00:00",
+      "in_diet": true
+    }
+  ]
+  
