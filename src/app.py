@@ -26,16 +26,14 @@ def create_diet():
     if not name or not date_time_str or in_diet is None:
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Tratamento de erro na conversão da data
     try:
         date_time = datetime.strptime(date_time_str, "%Y-%m-%d %H:%M:%S")
     except ValueError:
         return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD HH:MM:SS'}), 400
 
-    # Criando a refeição
     nova_refeicao = Refeicoes(
         name=name,
-        description=data.get("description", ""),  # Padrão vazio se não informado
+        description=data.get("description", ""),
         date_time=date_time,
         in_diet=in_diet
     )
@@ -59,16 +57,23 @@ def get_refeicoes():
 
 
 
+# ENDPOINT: DETAIL MEALS SPECIFIC
+@app.route("/refeicoes/<int:id>", methods=["GET"])
+def get_refeicoes_especifica(id):
+    refeicoes = Refeicoes.query.all()
+    for refeicao in refeicoes:
+        if refeicao.id == id:
+            return jsonify({'refeicoes': refeicao.to_dict()}), 200
+    return jsonify({"message": "Refeição não encontrada."}), 404
+
 
 # ENDPOINT: DELETE
 @app.route("/refeicoes/<int:id>", methods=["DELETE"])
 def delete_refeicao(id):
     delete_meal = None
     refeicoes = Refeicoes.query.all()
-    print(refeicoes)
     for refeicao in refeicoes:
         if refeicao.id == id:
-            print(refeicao.id)
             delete_meal = refeicao
             break
 
@@ -77,12 +82,8 @@ def delete_refeicao(id):
 
     db.session.delete(delete_meal)
     db.session.commit()
-
     return jsonify({"message": "Refeição deletada com sucesso."})
 
-
-
-# ENDPOINT: DETAIL MEALS SPECIFIC
 
 
 
