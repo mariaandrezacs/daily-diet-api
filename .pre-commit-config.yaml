@@ -3,13 +3,14 @@ repos:
     hooks:
       - id: pylint
         name: pylint
-        entry: pylint
+        entry: venv/bin/pylint  # Para Linux/Mac
+        # entry: venv\Scripts\pylint.exe  # Para Windows
         language: system
         types: [python]
         args:
           [
-            "-rn", # Only display messages
-            "-sn", # Don't display the score
-            "--rcfile=.pylintrc", # Link to your config file
-            "--load-plugins=pylint.extensions.docparams", # Load an extension
+            "-rn",  # Only display messages
+            "-sn",  # Don't display the score
+            "--rcfile=.pylintrc",  # Link to your config file
+            "--load-plugins=pylint.extensions.docparams",  # Load an extension
           ]
