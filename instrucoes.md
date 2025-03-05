@@ -29,9 +29,8 @@ A **Daily Diet API** é uma aplicação para controle de dieta diária, permitin
 
 # -------------------------------------------
 
-Criar o ambiente Flask.
-Configurar o banco de dados com SQLAlchemy.
-Criar os endpoints da API:
+
+## Criar os endpoints da API:
     - Registrar uma refeição (POST /refeicoes)
     - Editar uma refeição (PUT /refeicoes/<id>)
     - Excluir uma refeição (DELETE /refeicoes/<id>)
