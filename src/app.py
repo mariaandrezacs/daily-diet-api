@@ -53,8 +53,29 @@ def get_refeicoes():
 
 
 # ENDPOINT: EDIT
+@app.route('/refeicoes/update/<int:id>', methods=["PUT"])
+def update_refeicao(id):
+    refeicao = Refeicoes.query.get(id)
 
+    if not refeicao:
+        return jsonify({"message": "Não foi possível encontrar a refeição"}), 404
 
+    data = request.get_json()
+    if not data:
+        return jsonify({"message": "Dados inválidos ou ausentes"}), 404
+
+    refeicao.name = data.get("name")
+    refeicao.description = data.get("description")
+    if "date_time" in data:
+        refeicao.date_time = datetime.strptime(data["date_time"], "%Y-%m-%d %H:%M:%S")
+    refeicao.in_diet = data.get("in_diet")
+
+    try:
+        db.session.commit()
+        return jsonify({"message": "Refeição atualizada com sucesso"})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": "Erro ao atualizar refeição.", "error": str(e)}), 500
 
 
 # ENDPOINT: DETAIL MEALS SPECIFIC
