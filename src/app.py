@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = 'SECRET_KEY_WEBSOCKET'
 db.init_app(app)
 socketio = SocketIO(app)
 
-
+# ENDPOINT: CREATE
 @app.route("/created", methods=["POST"])
 def create_diet():
     data = request.get_json()
@@ -46,6 +46,7 @@ def create_diet():
     return jsonify({'message': 'Meals created successfully'}), 201
 
 
+# ENDPOINT: LIST
 @app.route("/refeicoes", methods=["GET"])
 def get_refeicoes():
     refeicoes = Refeicoes.query.all()
@@ -53,10 +54,35 @@ def get_refeicoes():
     return jsonify({'refeicoes': data}), 200
 
 
+# ENDPOINT: EDIT
 
 
 
 
+
+# ENDPOINT: DELETE
+@app.route("/refeicoes/<int:id>", methods=["DELETE"])
+def delete_refeicao(id):
+    delete_meal = None
+    refeicoes = Refeicoes.query.all()
+    print(refeicoes)
+    for refeicao in refeicoes:
+        if refeicao.id == id:
+            print(refeicao.id)
+            delete_meal = refeicao
+            break
+
+    if delete_meal is None:
+        return jsonify({"message": "Não foi possivel encontrar a atividade"}), 404
+
+    db.session.delete(delete_meal)
+    db.session.commit()
+
+    return jsonify({"message": "Refeição deletada com sucesso."})
+
+
+
+# ENDPOINT: DETAIL MEALS SPECIFIC
 
 
 
