@@ -58,21 +58,27 @@ def update_refeicao(id):
     refeicao = Refeicoes.query.get(id)
 
     if not refeicao:
-        return jsonify({"message": "Não foi possível encontrar a refeição"}), 404
+        return jsonify({"message": "Não foi possível encontrar a refeição."}), 404
 
     data = request.get_json()
     if not data:
-        return jsonify({"message": "Dados inválidos ou ausentes"}), 404
-
-    refeicao.name = data.get("name")
-    refeicao.description = data.get("description")
-    if "date_time" in data:
-        refeicao.date_time = datetime.strptime(data["date_time"], "%Y-%m-%d %H:%M:%S")
-    refeicao.in_diet = data.get("in_diet")
+        return jsonify({"message": "Dados inválidos ou ausentes."}), 400
 
     try:
+        refeicao.name = data.get("name", refeicao.name)
+        refeicao.description = data.get("description", refeicao.description)
+
+        if "date_time" in data:
+            try:
+                refeicao.date_time = datetime.strptime(data["date_time"], "%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                return jsonify({"message": "Formato de data inválido. Use 'YYYY-MM-DD HH:MM:SS'."}), 400
+
+        refeicao.in_diet = data.get("in_diet", refeicao.in_diet)
+
         db.session.commit()
-        return jsonify({"message": "Refeição atualizada com sucesso"})
+        return jsonify({"message": "Refeição atualizada com sucesso."}), 200
+
     except Exception as e:
         db.session.rollback()
         return jsonify({"message": "Erro ao atualizar refeição.", "error": str(e)}), 500
