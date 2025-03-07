@@ -72,7 +72,8 @@ def update_refeicao(id):
             try:
                 refeicao.date_time = datetime.strptime(data["date_time"], "%Y-%m-%d %H:%M:%S")
             except ValueError:
-                return jsonify({"message": "Formato de data inválido. Use 'YYYY-MM-DD HH:MM:SS'."}), 400
+                return jsonify({"message": 
+                                "Formato de data inválido. Use 'YYYY-MM-DD HH:MM:SS'."}), 400
 
         refeicao.in_diet = data.get("in_diet", refeicao.in_diet)
 
