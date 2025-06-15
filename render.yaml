@@ -1,0 +1,12 @@
+# Exported from Render on 2025-06-15T14:19:02Z
+services:
+- type: web
+  name: daily-diet-api
+  runtime: python
+  repo: https://github.com/mariaandrezacs/daily-diet-api
+  plan: free
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: 'python src/app.py    '
+  autoDeployTrigger: commit
+version: "1"
