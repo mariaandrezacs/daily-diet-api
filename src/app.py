@@ -15,6 +15,7 @@ db.init_app(app)
 socketio = SocketIO(app)
 
 # ENDPOINT: CREATE
+@app.route("/refeicoes", methods=["POST"])
 @app.route("/created", methods=["POST"])
 def create_diet():
     data = request.get_json()
@@ -53,6 +54,7 @@ def get_refeicoes():
 
 
 # ENDPOINT: EDIT
+@app.route('/refeicoes/<int:id>', methods=["PUT"])
 @app.route('/refeicoes/update/<int:id>', methods=["PUT"])
 def update_refeicao(id):
     refeicao = Refeicoes.query.get(id)
