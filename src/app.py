@@ -1,12 +1,14 @@
 from datetime import datetime
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flask_socketio import SocketIO
 
 from db_models.refeicoes import Refeicoes
 from repository.database import db
 
 app = Flask(__name__)
+CORS(app, origins=["https://daily-diet-companion.vercel.app"])
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'SECRET_KEY_WEBSOCKET'
