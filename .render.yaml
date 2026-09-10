@@ -1,9 +1,22 @@
+databases:
+  - name: daily-diet-db
+    plan: free
+    region: oregon
+    postgresMajorVersion: "15"
+
 services:
   - type: web
     name: daily-diet-api
-    env: python
+    runtime: python
     plan: free
     branch: main
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python src/app.py"
     pythonVersion: 3.11.9
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: daily-diet-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
