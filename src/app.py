@@ -10,6 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from db_models.refeicoes import Refeicoes
 from db_models.usuarios import User
 from repository.database import db
+from seed import seed_database
 
 app = Flask(__name__)
 CORS(app, origins=["https://daily-diet-companion.vercel.app"])
@@ -177,6 +178,7 @@ def delete_refeicao(id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        seed_database()
     socketio.run(
         app,
         host="0.0.0.0",

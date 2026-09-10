@@ -1,4 +1,11 @@
-[
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "123456"
+    }
+  ],
+  "refeicoes": [
     {
       "name": "Salada de Frango",
       "description": "Frango grelhado com folhas verdes",
@@ -30,4 +37,4 @@
       "in_diet": true
     }
   ]
-  
+}
