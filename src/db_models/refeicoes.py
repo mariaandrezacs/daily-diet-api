@@ -10,6 +10,7 @@ class Refeicoes(db.Model):
     description = db.Column(db.String(200), nullable=True)
     date_time = db.Column(db.DateTime, default=datetime.utcnow)
     in_diet = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def to_dict(self):
         return {
