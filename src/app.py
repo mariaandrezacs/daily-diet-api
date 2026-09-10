@@ -28,6 +28,12 @@ jwt = JWTManager(app)
 socketio = SocketIO(app)
 
 
+@app.route("/", methods=["GET"])
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"}), 200
+
+
 def get_current_user_id():
     return int(get_jwt_identity())
 
